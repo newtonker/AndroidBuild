@@ -1,0 +1,156 @@
+android_resource(
+    name = 'res_debug',
+    package = 'com.test.test',
+    res = res_glob([
+        ('src/main/res', '**'),
+    ]),
+    resource_union = True,
+    deps = [
+        '//.okbuck/cache:com.android.support.constraint--constraint-layout--1.1.2.aar',
+        '//.okbuck/cache:com.antfortune.freeline--runtime--0.8.8.aar',
+    ],
+    visibility = [
+        'PUBLIC',
+    ],
+)
+
+android_build_config(
+    name = 'build_config_debug',
+    package = 'com.test.test',
+    values = [
+        'String APPLICATION_ID = "com.test.test"',
+        'String BUILD_TYPE = "debug"',
+        'String FLAVOR = ""',
+        'int VERSION_CODE = 1',
+        'String VERSION_NAME = "1.0"',
+    ],
+    visibility = [
+        'PUBLIC',
+    ],
+)
+
+lib_deps = []
+
+android_library(
+    name = 'src_debug',
+    srcs = glob([
+        'src/main/java/**/*.java',
+    ]),
+    source = '7',
+    target = '7',
+    provided_deps = [
+        '//.okbuck/cache/d8:rt-stub.jar',
+    ],
+
+    manifest = '//.okbuck/gen/app/debug:AndroidManifest.xml',
+
+    deps = [
+        '//.okbuck/cache:com.android.support.constraint--constraint-layout--1.1.2.aar',
+        '//.okbuck/cache:com.android.support.constraint--constraint-layout-solver--1.1.2.jar',
+        '//.okbuck/cache:com.antfortune.freeline--runtime--0.8.8.aar',
+        ':build_config_debug',
+        ':res_debug',
+    ],
+    visibility = [
+        'PUBLIC',
+    ],
+)
+
+android_binary(
+    name = 'bin_debug',
+    manifest_skeleton = '//.okbuck/gen/app/debug:AndroidManifest.xml',
+    keystore = '//.okbuck/gen/app/debug:app.keystore',
+    dex_tool = 'd8',
+    package_type = 'debug',
+    manifest_entries = {
+        'placeholders': {
+            'applicationId': 'com.test.test',
+        },
+    },
+    deps = [
+        ':res_debug',
+        ':src_debug',
+    ],
+    visibility = [
+        'PUBLIC',
+    ],
+)
+
+android_resource(
+    name = 'res_release',
+    package = 'com.test.test',
+    res = res_glob([
+        ('src/main/res', '**'),
+    ]),
+    resource_union = True,
+    deps = [
+        '//.okbuck/cache:com.android.support.constraint--constraint-layout--1.1.2.aar',
+        '//.okbuck/cache:com.antfortune.freeline--runtime-no-op--0.8.8.aar',
+    ],
+    visibility = [
+        'PUBLIC',
+    ],
+)
+
+android_build_config(
+    name = 'build_config_release',
+    package = 'com.test.test',
+    values = [
+        'String APPLICATION_ID = "com.test.test"',
+        'String BUILD_TYPE = "release"',
+        'String FLAVOR = ""',
+        'int VERSION_CODE = 1',
+        'String VERSION_NAME = "1.0"',
+    ],
+    visibility = [
+        'PUBLIC',
+    ],
+)
+
+lib_deps = []
+
+android_library(
+    name = 'src_release',
+    srcs = glob([
+        'src/main/java/**/*.java',
+    ]),
+    source = '7',
+    target = '7',
+    provided_deps = [
+        '//.okbuck/cache/d8:rt-stub.jar',
+    ],
+
+    manifest = '//.okbuck/gen/app/release:AndroidManifest.xml',
+
+    deps = [
+        '//.okbuck/cache:com.android.support.constraint--constraint-layout--1.1.2.aar',
+        '//.okbuck/cache:com.android.support.constraint--constraint-layout-solver--1.1.2.jar',
+        '//.okbuck/cache:com.antfortune.freeline--runtime-no-op--0.8.8.aar',
+        ':build_config_release',
+        ':res_release',
+    ],
+    visibility = [
+        'PUBLIC',
+    ],
+)
+
+android_binary(
+    name = 'bin_release',
+    manifest_skeleton = '//.okbuck/gen/app/release:AndroidManifest.xml',
+    keystore = '//.okbuck/gen/app/release:app.keystore',
+    dex_tool = 'd8',
+    package_type = 'release',
+    manifest_entries = {
+        'placeholders': {
+            'applicationId': 'com.test.test',
+        },
+    },
+    deps = [
+        ':res_release',
+        ':src_release',
+    ],
+    visibility = [
+        'PUBLIC',
+    ],
+)
+

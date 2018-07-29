@@ -1,0 +1,7 @@
+android/arch/core/BuildConfig de3f862de788fdb707748025dec2c455f39850b2
+android/arch/core/executor/ArchTaskExecutor eb821d23452a1ae23db701c0ccb358bd3297e773
+android/arch/core/executor/ArchTaskExecutor$1 a1ff532f9ae4002965f9f0f065ef94b759e6ab13
+android/arch/core/executor/ArchTaskExecutor$2 066bdb1d6b174ee984b6544a846ec4f5df02211a
+android/arch/core/executor/DefaultTaskExecutor 7d66051b7d676b6fb7146a4fe63a97a6a5e30630
+android/arch/core/executor/TaskExecutor 051685f0beecf40b6e33a9b87216c63bb38dd326
+android/arch/core/util/Function 0a54609bb9a5551f0bc7a8653f2f75218afe9ae8

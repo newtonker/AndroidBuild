@@ -1,0 +1,1 @@
+com/test/test/BuildConfig 8d0e21473147dfe33bd02d302a9ab68263897a01

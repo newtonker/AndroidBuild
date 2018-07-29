@@ -1,0 +1,104 @@
+import os, re
+
+
+def merge_maps(**res_maps):
+    result = {}
+    for path, res_map in res_maps.iteritems():
+        for key in res_map:
+            if key in result and result[key] != res_map[key]:
+                dirname = os.path.dirname(key)
+                basename = os.path.basename(key)
+                new_key = '/'.join([dirname, path.replace('/', '_') + '_' + basename])
+                result[new_key] = res_map[key]
+            else:
+                result[key] = res_map[key]
+
+    return result
+
+
+def res_glob(glob_specs):
+    """
+    Given a list of tuples, the form of (relative-sub-directory, glob-pattern),
+    return a dict of sub-directory relative paths to full paths. Useful for
+    defining res/asset globs of android_resource rules. This automatically handles
+    path name conflicts by prefixing such keys with the parent dir path.
+    """
+    results = {}
+
+    for dirpath, glob_pattern in glob_specs:
+        results[dirpath] = subdir_glob([(dirpath, glob_pattern)],
+        excludes=[])
+
+    return merge_maps(**results)
+
+
+def okbuck_aidl(
+        name,
+        aidls,
+        imports,
+        manifest=None,
+        deps=[],
+    ):
+    gen = []
+    for aidl_file in glob(["{}/**/*.aidl".format(aidls)]):
+        rule_name = '{}__'.format(name) + re.sub(r'^.*/([^/]+)\.aidl$', r'\1', aidl_file)
+        gen.append(':' + rule_name)
+        gen_aidl(
+            name = rule_name,
+            aidl = aidl_file,
+            import_path = imports,
+        )
+
+    android_library(
+        name = name,
+        srcs = gen,
+        manifest = manifest,
+        deps = deps
+    )
+
+
+def toLocation(dep):
+    return "$(location {})".format(dep)
+
+
+def okbuck_lint(
+        name,
+        manifest,
+        has_srcs=True,
+        inputs=[],
+        custom_lints=[],
+        jvm_args="",
+        deps=[],
+        lint_options=[]
+    ):
+
+    variant = name.replace('lint_', '', 1)
+
+    manifest_copy = "manifest_copy_{}".format(variant)
+    genrule(
+        name = manifest_copy,
+        out = "{}/AndroidManifest.xml".format(get_base_path().replace('/', '_')),
+        bash = "mkdir -p `dirname $OUT`; cp {} $OUT".format(toLocation(manifest))
+    )
+
+    bash = "export ANDROID_LINT_JARS=\"{}\"; PROJECT_ROOT=`echo '{}' | sed 's|buck-out.*||'`; ".format(':'.join(map(toLocation, custom_lints)), toLocation(':' + manifest_copy))
+
+    if has_srcs:
+        bash += "CP_FILE=`sed 's/@//' <<< $(@classpath_abi :src_{})`; ".format(variant)
+        bash += 'sed -i.bak -e "s|$PROJECT_ROOT||g" -e "s|\'||g" $CP_FILE; '
+
+    bash += 'mkdir -p $OUT; LOGFILE=$OUT/lint.log; trap "rv=\$?; if [ \$rv != 0 ] ; then cat \$LOGFILE 1>&2 ; fi ; rm -f \$LOGFILE; exit \$rv" EXIT;  java -Djava.awt.headless=true -Dcom.android.tools.lint.workdir=$PROJECT_ROOT '
+    bash += "{} ".format(jvm_args)
+    bash += "-classpath {} com.android.tools.lint.Main ".format(':'.join(map(toLocation, deps)))
+
+    if has_srcs:
+        bash += "--classpath $(location :src_{}) --libraries `cat $CP_FILE` ".format(variant)
+
+    bash += "{} `dirname {}` >$LOGFILE".format(' '.join(lint_options), toLocation(':' + manifest_copy))
+
+    genrule(
+        name = name,
+        srcs = inputs,
+        out = "{}_out".format(name),
+        bash = bash
+    )

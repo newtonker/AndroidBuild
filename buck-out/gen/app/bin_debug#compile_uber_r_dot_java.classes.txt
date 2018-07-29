@@ -1,0 +1,14 @@
+android/support/constraint/R 7eaf06d3aa0c9768ead56ad0258788a09b4982e9
+android/support/constraint/R$attr 70f8162066923595a42babe7583696a40562cdc7
+android/support/constraint/R$id 4e52c187b67e48440d9ceda0bd578e29ff2604b9
+android/support/constraint/R$styleable 2f92edce77316e393800c0eef891ab1d6b205230
+com/antfortune/freeline/R 5117e3adb7f731fa596471785cb93842374dad49
+com/test/test/R 0e1b314fcae59b0e403be7624aff4c7ca0f559c5
+com/test/test/R$attr c9ea78937570cc87748e4d31f0b2f15d762992a5
+com/test/test/R$color 3b8ef0b49814becd204f6c3990750fd8561f517c
+com/test/test/R$drawable 2dc5694390d369901302058af7ecbfd1b9211915
+com/test/test/R$id 4958ccb93ca0d18401d7e3af555d5095ea6a208f
+com/test/test/R$layout 944f84d5cb11ab68a34998345dd38717951c0abc
+com/test/test/R$mipmap baccbb2dfd37cb9a1b64efb532a16712bf361d2c
+com/test/test/R$string 3f4458448f33449e0f7e1380d03ab71ad4df2ab2
+com/test/test/R$styleable 384530b8b45c89e522d0a6217399d6ef60182b88

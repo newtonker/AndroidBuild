@@ -1,0 +1,14 @@
+for file in glob(['AndroidManifest.xml', 'proguard.pro', 'proguard.map']):
+  export_file(
+    name = file,
+    mode = 'reference',
+    visibility = ['PUBLIC'],
+  )
+
+for keystoreFile in glob(['app.keystore']):
+    keystore(
+        name = keystoreFile,
+        store = keystoreFile,
+        properties = keystoreFile + '.properties',
+        visibility = ['PUBLIC'],
+    )

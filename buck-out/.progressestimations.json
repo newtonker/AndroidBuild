@@ -1,0 +1,1 @@
+{"build //app:bin_debug":{"expectedNumberOfParsedRules":27,"expectedNumberOfParsedBUCKFiles":4},"install --run //app:bin_debug":{"expectedNumberOfParsedRules":27,"expectedNumberOfParsedBUCKFiles":4}}

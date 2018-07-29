@@ -1,0 +1,12 @@
+[android]
+    build_tools_version = 24.0.2
+    target = android-24
+
+[buildfile]
+    includes = //.okbuck/defs/DEFS
+
+[kotlin]
+    kotlin_home = .okbuck/cache/kotlin_home
+
+[tools]
+    proguard = .okbuck/cache/proguard/proguard-base-6.0.3.jar

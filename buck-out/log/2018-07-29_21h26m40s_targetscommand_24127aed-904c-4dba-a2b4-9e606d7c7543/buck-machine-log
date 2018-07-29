@@ -1,0 +1,10 @@
+InvocationInfo {"buildId":"24127aed-904c-4dba-a2b4-9e606d7c7543","superConsoleEnabled":true,"isDaemon":true,"subCommand":"targetscommand","commandArgs":["targets"],"unexpandedCommandArgs":["targets"],"buckLogDir":"buck-out/log","timestampMillis":1532899600598}
+FileCreate {"timestamp":1532899600713,"filename":"WatchmanPathEvent{cellPath=/Users/jack/Downloads/test, kind=CREATE, path=.okbuck/gen/app/debug/AndroidManifest.xml}"}
+FileCreate {"timestamp":1532899600713,"filename":"WatchmanPathEvent{cellPath=/Users/jack/Downloads/test, kind=CREATE, path=.okbuck/gen/app/debug/app.keystore}"}
+FileCreate {"timestamp":1532899600713,"filename":"WatchmanPathEvent{cellPath=/Users/jack/Downloads/test, kind=CREATE, path=.okbuck/gen/app/debug/app.keystore.properties}"}
+FileCreate {"timestamp":1532899600715,"filename":"WatchmanPathEvent{cellPath=/Users/jack/Downloads/test, kind=CREATE, path=.okbuck/gen/app/release/AndroidManifest.xml}"}
+FileCreate {"timestamp":1532899600715,"filename":"WatchmanPathEvent{cellPath=/Users/jack/Downloads/test, kind=CREATE, path=.okbuck/gen/app/release/app.keystore}"}
+FileCreate {"timestamp":1532899600715,"filename":"WatchmanPathEvent{cellPath=/Users/jack/Downloads/test, kind=CREATE, path=.okbuck/gen/app/release/app.keystore.properties}"}
+FileCreate {"timestamp":1532899600717,"filename":"WatchmanPathEvent{cellPath=/Users/jack/Downloads/test, kind=CREATE, path=.okbuck/gen/app/release/BUCK}"}
+Cache.Stats {"cacheHitsPerMode":{"dir":0},"cacheErrorsPerMode":{"dir":0},"totalCacheHits":0,"totalCacheErrors":0,"totalCacheMisses":0,"totalCacheIgnores":0,"totalCacheLocalKeyUnchangedHits":0,"successUploadCount":0,"failureUploadCount":0}
+ExitCode {"exitCode":-1}
